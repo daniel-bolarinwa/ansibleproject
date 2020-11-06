@@ -2,4 +2,5 @@
 sudo yum install wget -y
 sudo amazon-linux-extras install nginx1 -y
 sudo nginx
-sudo yum install ansible -y
+sudo amazon-linux-extras install ansible2
+sudo yum install git -y
