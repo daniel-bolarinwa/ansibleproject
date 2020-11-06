@@ -1,0 +1,9 @@
+---
+- hosts: webserver
+  roles:
+  - nodeJs
+- hosts: dbserver
+  roles:
+  - MongoDB
+
+

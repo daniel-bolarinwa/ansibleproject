@@ -5,14 +5,14 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "tester-s3-bucket"
-    key    = "ansibleproject/terraform/terraform.tfstate"
+    key    = "ansibleproject/terraform/.terraform/terraform.tfstate"
     region = "eu-west-2"
   }
 }
 
 resource "aws_vpc" "mpvpc" {
     cidr_block = "172.31.0.0/16"
-    tags {
+    tags = {
         Name = "MiniProjectVPC"
     }
 }
@@ -21,7 +21,7 @@ resource "aws_subnet" "pubsub1" {
   vpc_id            = aws_vpc.mpvpc.id
   cidr_block        = "172.31.16.0/20"
   availability_zone = "eu-west-2a"
-  tags {
+  tags = {
     Name = "websubnet"
   }
 }
@@ -30,7 +30,7 @@ resource "aws_subnet" "pubsub2" {
   vpc_id            = aws_vpc.mpvpc.id
   cidr_block        = "172.31.32.0/20"
   availability_zone = "eu-west-2b"
-  tags {
+  tags = {
     Name = "dbsubnet"
   }
 }
@@ -43,8 +43,8 @@ resource "aws_instance" "webserver" {
   depends_on             = [aws_internet_gateway.internet_gw]
   vpc_security_group_ids = [aws_security_group.instances_sgrules.id]
   key_name               = "${var.key_name}"
-  tags {
-    Name = "NodeJSServer"
+  tags = {
+    Name = "webserver"
   }
 }
 
@@ -55,8 +55,8 @@ resource "aws_instance" "dbserver" {
   depends_on             = [aws_internet_gateway.internet_gw]
   vpc_security_group_ids = [aws_security_group.instances_sgrules.id]
   key_name               = "${var.key_name}"
-  tags {
-    Name = "MongoDBServer"
+  tags = {
+    Name = "dbserver"
   }
 }
 

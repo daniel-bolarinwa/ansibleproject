@@ -1,0 +1,27 @@
+---
+- name: Install webserver dependencies
+  tasks:
+  - name: install nodeJs dependencies
+    shell: sudo yum install -y gcc-c++ make
+  - name: fetch additional dependency
+    shell: curl -sL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+  - name: install node using yum
+    shell: sudo yum install -y nodejs
+- name: install node.js packages
+  tasks: 
+  - name: install express
+    shell: sudo npm install express --save
+  - name: install body-parser
+    shell: sudo npm install body-parser --save
+  - name: install mongoDB library
+    shell: sudo npm install mongodb --save
+- name: clone application code from github
+  tasks:
+  - name: install git
+    shell: sudo yum install git -y
+  - name: clone with https
+    shell: git clone https://github.com/TWCurry/CD5108-Coursework.git
+- name: run nodeJs api code
+  tasks:
+  - name: run nodeJs file
+    shell: node api.js
