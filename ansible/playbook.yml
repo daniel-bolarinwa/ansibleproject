@@ -1,8 +1,8 @@
 ---
-- hosts: webserver
+- hosts: webservers
   roles:
   - nodeJs
-- hosts: dbserver
+- hosts: dbservers
   roles:
   - MongoDB
 

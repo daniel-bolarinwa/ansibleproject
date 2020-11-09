@@ -1,5 +1,3 @@
 ---
-- name: install dbserver dependencies
-  tasks: 
-  - name: install mongoDB
-    shell: sudo yum install -y mongodb-org
+- name: install mongoDB
+  shell: sudo yum install -y mongodb-org
