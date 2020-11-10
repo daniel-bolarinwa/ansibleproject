@@ -26,7 +26,7 @@
 
 - name: insert MongoDB ip address
   shell: cd /CD5108-Coursework
-  shell: aws ec2 describe-instances --filters Name=tag:Name,Values=dbserver
+  shell: aws ec2 describe-instances --filters Name=tag:Name,Values=dbserver --region eu-west-2
   shell: sed -i 's/localhost/ipAddress/' api.js
 - name: run nodeJs file
   shell: node /CD5108-Coursework/api.js
