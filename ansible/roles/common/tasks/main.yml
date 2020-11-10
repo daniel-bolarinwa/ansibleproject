@@ -1,2 +1,4 @@
 - name: install git
-  shell: sudo yum install git -y
+  yum:
+    name: git
+    state: present

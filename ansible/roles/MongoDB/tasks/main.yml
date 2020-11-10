@@ -1,3 +1,5 @@
 ---
 - name: install mongoDB
-  shell: sudo yum install -y mongodb-org
+  yum:
+    name: mongodb-org
+    state: present
