@@ -13,12 +13,12 @@
 - name: install mongoDB library
   shell: sudo npm install mongodb --save
 
-- name: install git
-  shell: sudo yum install git -y
 - name: clone with https
   shell: git clone https://github.com/TWCurry/CD5108-Coursework.git
 
-- name: move api file to visible directory
-  shell: mv api.js /home/ec2-user
+- name: move api file to home directory
+  shell: cd CD5108-Coursework/
+  shell: sudo mv api.js /home/ec2-user
+  shel: cd ../
 - name: run nodeJs file
   shell: node api.js
