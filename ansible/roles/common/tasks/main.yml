@@ -2,3 +2,6 @@
   yum:
     name: git
     state: present
+  yum:
+    name: jq
+    state: present

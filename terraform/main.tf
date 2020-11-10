@@ -43,6 +43,7 @@ resource "aws_instance" "webserver" {
   depends_on             = [aws_internet_gateway.internet_gw]
   vpc_security_group_ids = [aws_security_group.instances_sgrules.id]
   key_name               = "${var.key_name}"
+  iam_instance_profile = "${aws_iam_instance_profile.ec2-profile.name}"
   tags = {
     Name = "webserver"
   }
@@ -55,6 +56,7 @@ resource "aws_instance" "dbserver" {
   depends_on             = [aws_internet_gateway.internet_gw]
   vpc_security_group_ids = [aws_security_group.instances_sgrules.id]
   key_name               = "${var.key_name}"
+  iam_instance_profile = "${aws_iam_instance_profile.ec2-profile.name}"
   tags = {
     Name = "dbserver"
   }

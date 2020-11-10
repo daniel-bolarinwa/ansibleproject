@@ -24,9 +24,9 @@
     repo: https://github.com/TWCurry/CD5108-Coursework.git
     dest: /home/ec2-user
 
-- name: move api file to home directory
-  shell: cd CD5108-Coursework/
-  shell: sudo mv api.js /home/ec2-user
-  shel: cd ../
+- name: insert MongoDB ip address
+  shell: cd /CD5108-Coursework
+  shell: aws ec2 describe-instances --filters Name=tag:Name,Values=dbserver
+  shell: sed -i 's/localhost/ipAddress/' api.js
 - name: run nodeJs file
-  shell: node api.js
+  shell: node /CD5108-Coursework/api.js

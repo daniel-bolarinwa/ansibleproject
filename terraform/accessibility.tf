@@ -119,3 +119,27 @@ resource "aws_security_group" "instances_sgrules" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_iam_instance_profile" "ec2-profile" {
+  name = "ec2_access_profile"
+  role = aws_iam_role.ec2_role.name
+}
+
+resource "aws_iam_role" "ec2_role" {
+  name = "ec2_access_role"
+
+  assume_role_policy = <<EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": [
+          "ec2:Describe*"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ]
+  }
+EOF
+}
