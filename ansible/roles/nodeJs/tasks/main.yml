@@ -18,5 +18,7 @@
 - name: clone with https
   shell: git clone https://github.com/TWCurry/CD5108-Coursework.git
 
+- name: move api file to visible directory
+  shell: mv api.js /home/ec2-user
 - name: run nodeJs file
   shell: node api.js

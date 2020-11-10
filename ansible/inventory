@@ -1,7 +1,7 @@
 [webservers]
-18.134.45.71
+18.135.0.33
 [dbservers]
-18.133.88.84
+18.132.166.141
 [webservers:vars]
 ansible_user=ec2-user
 ansible_become=yes
