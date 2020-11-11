@@ -24,3 +24,11 @@
     dest: /home/ec2-user/mongo-shell.exp
 - name: run expect script
   shell: expect mongo-shell.exp
+- name: import csv file
+  shell: mongoimport --type csv -d CD5108 -c coviddata --headerline --drop Coviddata.csv
+- name: open port 27017
+  shell: |
+    sudo iptables -A INPUT -p tcp --destination-port 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
+    sudo iptables -A OUTPUT  -p tcp --source-port 27017 -m state --state ESTABLISHED -j ACCEPT
+- name: enable the dbserver to listen on port 27017 for everything
+  shell: sed -i "s/127.0.0.1/0.0.0.0/" /etc/mongod.conf
