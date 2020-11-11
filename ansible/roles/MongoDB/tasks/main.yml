@@ -12,3 +12,15 @@
   yum:
     name: mongodb-org
     state: present
+- name: run mongodb
+  shell: sudo systemctl start mongod
+- name: install expect package
+  yum:
+    name: expect
+    state: present
+- name: copy expect script
+  copy:
+    src: ../files/mongo-shell.exp
+    dest: /home/ec2-user/mongo-shell.exp
+- name: run expect script
+  shell: expect mongo-shell.exp

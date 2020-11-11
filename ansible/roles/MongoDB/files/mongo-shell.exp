@@ -1,0 +1,7 @@
+#!/usr/bin/expect
+spawn "mongo"
+expect ">"
+send "use CD5108\r"
+expect "switched to db CD5108"
+send "db.createCollection(\"coviddata\")\r"
+expect "{ \"ok\" : 1 }"
