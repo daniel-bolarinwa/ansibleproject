@@ -1,7 +1,7 @@
 ---
 - name: install nodeJs dependencies
   yum: 
-    name: -y gcc-c++ make
+    name: gcc-c++ make
     state: present 
 
 - name: fetch additional dependency
