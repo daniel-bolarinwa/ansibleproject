@@ -22,7 +22,7 @@
 - name: insert MongoDB ip address
   shell: | 
     cd /home/ec2-user/CD5108-Coursework
-    ipaddress=$(aws ec2 describe-instances --filters Name=tag:Name,Values=dbserver --region eu-west-2 | jq -r .Reservations[0].Instances[0].PublicIpAddress)
+    ipaddress=$(aws ec2 describe-instances --filters Name=tag:Name,Values=dbserver Name=instance-state-name,Values=running --region eu-west-2 | jq -r .Reservations[0].Instances[0].PublicIpAddress)
     sed -i "s/localhost/$ipaddress/" api.js
 - name: run nodeJs file
   shell: node /home/ec2-user/CD5108-Coursework/api.js
