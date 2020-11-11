@@ -1,9 +1,4 @@
 ---
-- name: install nodeJs dependencies
-  yum: 
-    name: gcc-c++ make
-    state: present 
-
 - name: fetch additional dependency
   shell: curl -sL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
 
@@ -22,11 +17,12 @@
 - name: clone with https
   git:
     repo: https://github.com/TWCurry/CD5108-Coursework.git
-    dest: /home/ec2-user
+    dest: /home/ec2-user/CD5108-Coursework
 
 - name: insert MongoDB ip address
-  shell: cd /CD5108-Coursework
-  shell: aws ec2 describe-instances --filters Name=tag:Name,Values=dbserver --region eu-west-2
-  shell: sed -i 's/localhost/ipAddress/' api.js
+  shell: | 
+    cd /home/ec2-user/CD5108-Coursework
+    ipaddress=$(aws ec2 describe-instances --filters Name=tag:Name,Values=dbserver --region eu-west-2 | jq -r .Reservations[0].Instances[0].PublicIpAddress)
+    sed -i "s/localhost/$ipaddress/" api.js
 - name: run nodeJs file
-  shell: node /CD5108-Coursework/api.js
+  shell: node /home/ec2-user/CD5108-Coursework/api.js
