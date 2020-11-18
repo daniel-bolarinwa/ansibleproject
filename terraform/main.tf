@@ -45,4 +45,5 @@ module "ec2_configuration" {
   instance_profile = "${aws_iam_instance_profile.ec2-profile.name}"
   key_name = "${var.key_name}"
   target_group_arn = aws_lb_target_group.target_group1.arn
+  user_data = "${file("template.sh")}"
 }

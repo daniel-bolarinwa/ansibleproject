@@ -18,3 +18,5 @@ variable "ports" {
 }
 
 variable "target_group_arn" {}
+
+variable "user_data" {}

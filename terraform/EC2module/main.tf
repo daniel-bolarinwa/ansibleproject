@@ -72,7 +72,7 @@ resource "aws_instance" "webserver" {
   ami                    = "ami-0a669382ea0feb73a"
   instance_type          = "t2.micro"
   subnet_id              = var.subnet_id1
-  user_data              = "${file("template.sh")}"
+  user_data              = var.user_data
   #depends_on             = [aws_internet_gateway.internet_gw]
   vpc_security_group_ids = [aws_security_group.instances_sgrules.id]
   key_name               = var.key_name
