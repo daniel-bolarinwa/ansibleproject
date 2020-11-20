@@ -31,4 +31,4 @@
     sudo iptables -A INPUT -p tcp --destination-port 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
     sudo iptables -A OUTPUT  -p tcp --source-port 27017 -m state --state ESTABLISHED -j ACCEPT
 - name: enable the dbserver to listen on port 27017 for everything
-  shell: sed -i "s/127.0.0.1/0.0.0.0/" /etc/mongod.conf
+  shell: sudo sed -i "s/127.0.0.1/0.0.0.0/" /etc/mongod.conf
