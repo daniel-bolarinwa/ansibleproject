@@ -90,7 +90,7 @@ EOF
 }
 
 resource "aws_iam_policy" "policy" {
-  name        = "instance_access_policy"
+  name = "instance_access_policy"
 
   policy = <<EOF
 {

@@ -1,5 +1,5 @@
 provider "aws" {
-    region = "eu-west-2"
+  region = "eu-west-2"
 }
 
 terraform {
@@ -11,10 +11,10 @@ terraform {
 }
 
 resource "aws_vpc" "mpvpc" {
-    cidr_block = "172.31.0.0/16"
-    tags = {
-        Name = "MiniProjectVPC"
-    }
+  cidr_block = "172.31.0.0/16"
+  tags = {
+    Name = "MiniProjectVPC"
+  }
 }
 
 resource "aws_subnet" "pubsub1" {
@@ -36,14 +36,14 @@ resource "aws_subnet" "pubsub2" {
 }
 
 module "ec2_configuration" {
-  source = "./EC2module"
-  vpc_id = aws_vpc.mpvpc.id
-  subnet_ids = [aws_subnet.pubsub1.id, aws_subnet.pubsub2.id]
-  subnet_id1 = aws_subnet.pubsub1.id
-  subnet_id2 = aws_subnet.pubsub2.id
-  target_group = aws_lb_target_group.target_group1.arn
-  instance_profile = "${aws_iam_instance_profile.ec2-profile.name}"
-  key_name = "${var.key_name}"
+  source           = "./EC2module"
+  vpc_id           = aws_vpc.mpvpc.id
+  subnet_ids       = [aws_subnet.pubsub1.id, aws_subnet.pubsub2.id]
+  subnet_id1       = aws_subnet.pubsub1.id
+  subnet_id2       = aws_subnet.pubsub2.id
+  target_group     = aws_lb_target_group.target_group1.arn
+  instance_profile = aws_iam_instance_profile.ec2-profile.name
+  key_name         = var.key_name
   target_group_arn = aws_lb_target_group.target_group1.arn
-  user_data = "${file("template.sh")}"
+  user_data        = file("template.sh")
 }

@@ -1,1 +1,7 @@
 .terraform
+
+admin-key-pair.pem
+
+Coviddata.csv
+
+.terraform.lock.hcl

@@ -8,7 +8,7 @@ resource "aws_lb" "nlb" {
 resource "aws_lb_listener" "listener" {
   load_balancer_arn = aws_lb.nlb.arn
   count             = 2
-  port = var.ports[count.index]
+  port              = var.ports[count.index]
   protocol          = "TCP"
   default_action {
     type             = "forward"
@@ -18,7 +18,7 @@ resource "aws_lb_listener" "listener" {
 
 resource "aws_lb_target_group_attachment" "nlb_instance_target1" {
   target_group_arn = var.target_group_arn
-  target_id        = aws_instance.webserver.id  
+  target_id        = aws_instance.webserver.id
   port             = 80
 }
 
@@ -69,10 +69,10 @@ resource "aws_security_group" "instances_sgrules" {
 }
 
 resource "aws_instance" "webserver" {
-  ami                    = "ami-0a669382ea0feb73a"
-  instance_type          = "t2.micro"
-  subnet_id              = var.subnet_id1
-  user_data              = var.user_data
+  ami           = "ami-0a669382ea0feb73a"
+  instance_type = "t2.micro"
+  subnet_id     = var.subnet_id1
+  user_data     = var.user_data
   #depends_on             = [aws_internet_gateway.internet_gw]
   vpc_security_group_ids = [aws_security_group.instances_sgrules.id]
   key_name               = var.key_name
@@ -83,9 +83,9 @@ resource "aws_instance" "webserver" {
 }
 
 resource "aws_instance" "dbserver" {
-  ami                    = "ami-0a669382ea0feb73a"
-  instance_type          = "t2.micro"
-  subnet_id              = var.subnet_id2
+  ami           = "ami-0a669382ea0feb73a"
+  instance_type = "t2.micro"
+  subnet_id     = var.subnet_id2
   #depends_on             = [aws_internet_gateway.internet_gw]
   vpc_security_group_ids = [aws_security_group.instances_sgrules.id]
   key_name               = var.key_name

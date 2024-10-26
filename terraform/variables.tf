@@ -1,6 +1,6 @@
 variable "key_name" { default = "admin-key-pair" }
 
 variable "ports" {
-    type = list
-    default = ["80", "443"]
+  type    = list(any)
+  default = ["80", "443"]
 }
